@@ -1,7 +1,9 @@
 using Julia_Hashcode2014
 using Documenter
 
-DocMeta.setdocmeta!(Julia_Hashcode2014, :DocTestSetup, :(using Julia_Hashcode2014); recursive=true)
+DocMeta.setdocmeta!(
+    Julia_Hashcode2014, :DocTestSetup, :(using Julia_Hashcode2014); recursive=true
+)
 
 makedocs(;
     modules=[Julia_Hashcode2014],
@@ -9,11 +11,7 @@ makedocs(;
     repo="https://github.com/davidfang/Julia_Hashcode2014.jl/blob/{commit}{path}#{line}",
     sitename="Julia_Hashcode2014.jl",
     format=Documenter.HTML(;
-        prettyurls=get(ENV, "CI", "false") == "true",
-        edit_link="main",
-        assets=String[],
+        prettyurls=get(ENV, "CI", "false") == "true", edit_link="main", assets=String[]
     ),
-    pages=[
-        "Home" => "index.md",
-    ],
+    pages=["Home" => "index.md"],
 )

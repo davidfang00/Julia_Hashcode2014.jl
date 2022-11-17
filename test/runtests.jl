@@ -4,19 +4,21 @@ using Aqua
 using Documenter
 using JuliaFormatter
 
-DocMeta.setdocmeta!(Julia_Hashcode2014, :DocTestSetup, :(using Julia_Hashcode2014); recursive=true)
+DocMeta.setdocmeta!(
+    Julia_Hashcode2014, :DocTestSetup, :(using Julia_Hashcode2014); recursive=true
+)
 
 @testset verbose = true "Julia_Hashcode2014.jl" begin
     @testset verbose = true "Code quality (Aqua.jl)" begin
-        Aqua.test_all(HashCode2014; ambiguities=false)
+        Aqua.test_all(Julia_Hashcode2014; ambiguities=false)
     end
 
     @testset verbose = true "Code formatting (JuliaFormatter.jl)" begin
-        @test format(HashCode2014; verbose=true, overwrite=false)
+        @test format(Julia_Hashcode2014; verbose=true, overwrite=false)
     end
 
     @testset verbose = true "Doctests (Documenter.jl)" begin
-        doctest(HashCode2014)
+        doctest(Julia_Hashcode2014)
     end
 
     @testset verbose = true "Small instance" begin
