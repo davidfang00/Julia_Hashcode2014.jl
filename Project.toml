@@ -1,7 +1,7 @@
 name = "Julia_Hashcode2014"
 uuid = "f237b1f5-32e2-4105-8be9-d985ab720a56"
 authors = ["David Fang and contributors"]
-version = "0.1.0"
+version = "1.0.0"
 
 [deps]
 Artifacts = "56f22d72-fd6d-98f1-02f0-08ddc0907c33"
@@ -10,8 +10,9 @@ JuliaFormatter = "98e50ef6-434e-11e9-1051-2b60c6c9e899"
 PythonCall = "6099a3de-0909-46bc-b1f4-468b9a2dfc0d"
 
 [compat]
-JuliaFormatter = "1"
 julia = "1.6"
+PythonCall = "0.9"
+JuliaFormatter = "1"
 
 [extras]
 Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
