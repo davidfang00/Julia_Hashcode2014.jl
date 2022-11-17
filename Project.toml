@@ -1,0 +1,13 @@
+name = "Julia_Hashcode2014"
+uuid = "f237b1f5-32e2-4105-8be9-d985ab720a56"
+authors = ["David Fang and contributors"]
+version = "0.1.0"
+
+[compat]
+julia = "1.6"
+
+[extras]
+Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
+
+[targets]
+test = ["Test"]

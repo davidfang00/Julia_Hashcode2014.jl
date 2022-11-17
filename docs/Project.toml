@@ -1,0 +1,4 @@
+[deps]
+Documenter = "e30172f5-a6a5-5a46-863b-614d45cd2de4"
+Julia_Hashcode2014 = "f237b1f5-32e2-4105-8be9-d985ab720a56"
+HashCode2014 = "7bbed249-721d-42ac-b1f6-7cf884be0fbe"
