@@ -1,5 +1,7 @@
 # Julia_Hashcode2014
 This repository contains a Julia package for the Hashcode2014 Challenge. 
+Team Name: BEE2
+Members: David Fang, Daniel Papacica, Jeremiah Budiman
 
 Challenge description: <https://storage.googleapis.com/coding-competitions.appspot.com/HC/2014/hashcode2014_final_task.pdf>
 
