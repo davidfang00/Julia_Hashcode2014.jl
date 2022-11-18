@@ -8,7 +8,7 @@ DocMeta.setdocmeta!(
 makedocs(;
     modules=[Julia_Hashcode2014],
     authors="David Fang and contributors",
-    repo="https://github.com/davidfang/Julia_Hashcode2014.jl/blob/{commit}{path}#{line}",
+    repo="https://github.com/davidfang00/Julia_Hashcode2014.jl/blob/{commit}{path}#{line}",
     sitename="Julia_Hashcode2014.jl",
     format=Documenter.HTML(;
         prettyurls=get(ENV, "CI", "false") == "true", edit_link="main", assets=String[]

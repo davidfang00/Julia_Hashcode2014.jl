@@ -1,3 +1,5 @@
+abstract type AbstractWeightedGraph end
+
 """
     AdjacencyGraph
 Store a city in the form of an weighted adjacency graph. Weights are based on length. 
@@ -6,11 +8,7 @@ Store a city in the form of an weighted adjacency graph. Weights are based on le
 - `weights`: weights based on length for each street.
 - `times`: the time it takes to travel a street. Stored as a dictionary keyed by (u, v).
 """
-
-
-abstract type AbstractWeightedGraph end
-
-struct AdjacencyGraph <: AbstractWeightedGraph
+Base.@kwdef struct AdjacencyGraph <: AbstractWeightedGraph
     outneighbors::Vector{Vector{Int}}
     weights::Vector{Vector{Float64}}
     times::Dict{Tuple{Int, Int}, Float64}
