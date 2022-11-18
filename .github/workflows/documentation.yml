@@ -37,7 +37,7 @@ jobs:
         with:
           files: lcov.info
       - name: Install dependencies
-        run: julia --project=docs/ -e 'using Pkg; Pkg.develop(PackageSpec(path=pwd())); Pkg.instantiate();Pkg.add(https://github.com/gdalle/HashCode2014.jl); Pkg.instantiate();'
+
   docs:
     name: Documentation
     runs-on: ubuntu-latest
@@ -52,6 +52,7 @@ jobs:
       - uses: julia-actions/julia-docdeploy@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - run: julia --project=docs/ -e 'using Pkg; Pkg.develop(PackageSpec(path=pwd())); Pkg.instantiate();Pkg.add(https://github.com/gdalle/HashCode2014.jl); Pkg.instantiate();'
       - run: |
           julia --project=docs -e '
             using Documenter: DocMeta, doctest
