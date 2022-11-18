@@ -11,7 +11,13 @@ makedocs(;
     repo="https://github.com/davidfang00/Julia_Hashcode2014.jl/blob/{commit}{path}#{line}",
     sitename="Julia_Hashcode2014.jl",
     format=Documenter.HTML(;
-        prettyurls=get(ENV, "CI", "false") == "true", edit_link="main", assets=String[]
+        prettyurls=get(ENV, "CI", "false") == "true", 
+        canonical = "github.com/davidfang00/Julia_Hashcode2014.jl",
+        edit_link="main", 
+        assets=String[]
     ),
     pages=["Home" => "index.md"],
 )
+
+deploydocs(; repo="github.com/davidfang00/Julia_Hashcode2014.jl", devbranch="main")
+
