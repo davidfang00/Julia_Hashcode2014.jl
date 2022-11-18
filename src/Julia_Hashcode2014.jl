@@ -13,7 +13,7 @@ export Solution, read_solution, write_solution
 export is_feasible, total_distance
 export random_walk
 export plot_streets
-export AdjacencyGraph, create_graph
+export AdjacencyGraph, create_graph, outneighbors, edge_time, edge_weight
 
 include("junction.jl")
 include("street.jl")

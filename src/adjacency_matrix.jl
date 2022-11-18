@@ -54,7 +54,7 @@ end
 Returns the time it takes to traverse the path (u, v).
 """
 function edge_time(g::AdjacencyGraph, u, v)
-    return g.times((u, v))
+    return g.times[(u, v)]
 end
 
 """
