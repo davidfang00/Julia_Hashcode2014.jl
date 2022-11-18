@@ -43,7 +43,7 @@ nb_vertices(g::AdjacencyGraph) = length(g.outneighbors)
 Returns the distance that the path (u, v) will traverse based on an [`AdjacencyGraph`](@ref) g.
 """
 function edge_weight(g::AdjacencyGraph, u, v)
-    k = searchsortedfirst(g.outneighbors[u], v)
+    k = searchsortedfirst(sort(g.outneighbors[u]), v)
     return g.weights[u][k]
 end
 
