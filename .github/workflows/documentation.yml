@@ -54,6 +54,9 @@ jobs:
       
       - run: |
           julia --project=docs -e '
+            using Pkg
+            Pkg.Registry.update()
+            Pkg.develop(url="https://github.com/gdalle/HashCode2014.jl")
             using Documenter: DocMeta, doctest
             using Julia_Hashcode2014
             DocMeta.setdocmeta!(Julia_Hashcode2014, :DocTestSetup, :(using Julia_Hashcode2014); recursive=true)
