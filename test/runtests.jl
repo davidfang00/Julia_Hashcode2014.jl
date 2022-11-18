@@ -1,4 +1,5 @@
 using Julia_Hashcode2014
+using HashCode2014
 using Test
 using Aqua
 using Documenter
@@ -10,7 +11,7 @@ DocMeta.setdocmeta!(
 
 @testset verbose = true "Julia_Hashcode2014.jl" begin
     @testset verbose = true "Code quality (Aqua.jl)" begin
-        Aqua.test_all(Julia_Hashcode2014; ambiguities=false)
+        Aqua.test_all(Julia_Hashcode2014; ambiguities=false, stale_deps=false)
     end
 
     @testset verbose = true "Code formatting (JuliaFormatter.jl)" begin

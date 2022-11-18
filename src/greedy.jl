@@ -23,10 +23,6 @@ function greedy(city::City)
     while all(terminate) == false
         for c in 1:nb_cars
             # println(c, itineraries[c], times, terminate)
-            if times[c] >= total_duration
-                terminate[c] = true
-                continue
-            end
 
             current_junction = last(itineraries[c])
             candidates = outneighbors(graph, current_junction)
@@ -70,6 +66,6 @@ function greedy(city::City)
             end
         end
     end
-    print(times)
+    println(times)
     return Solution(itineraries)
 end
