@@ -16,7 +16,7 @@ struct AdjacencyGraph <: AbstractWeightedGraph
     times::Dict{Tuple{Int, Int}, Float64}
 end
 
-function AdjacencyGraph(city)
+function AdjacencyGraph(city::City)
     n = length(city.junctions)
     edges = Tuple{Int,Int,Float64,Float64}[]
     
