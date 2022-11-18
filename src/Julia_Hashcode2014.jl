@@ -14,6 +14,7 @@ export is_feasible, total_distance
 export random_walk
 export plot_streets
 export AdjacencyGraph, create_graph, outneighbors, edge_time, edge_weight
+export greedy
 
 include("junction.jl")
 include("street.jl")
@@ -24,4 +25,5 @@ include("utils.jl")
 include("random_walk.jl")
 include("plot.jl")
 include("adjacency_matrix.jl")
+include("greedy.jl")
 end
