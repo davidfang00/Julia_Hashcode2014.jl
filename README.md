@@ -2,12 +2,10 @@
 
 
 [![Dev](https://img.shields.io/badge/docs-dev-blue.svg)](https://davidfang00.github.io/Julia_Hashcode2014.jl/dev/)
-
 [![Build Status](https://github.com/davidfang00/Julia_Hashcode2014.jl/actions/workflows/CI.yml/badge.svg?branch=main)](https://github.com/davidfang00/Julia_Hashcode2014.jl/actions/workflows/CI.yml?query=branch%3Amain)
-
 [![Code Style: Blue](https://img.shields.io/badge/code%20style-blue-4495d1.svg)](https://github.com/invenia/BlueStyle)
 
-This repository contains a Julia package for the Hashcode2014 Challenge. 
+This repository contains a Julia package for solving the Google HashCode2014 Challenge. 
 
 Team Name: BEE2
 
@@ -17,7 +15,6 @@ Challenge description: <https://storage.googleapis.com/coding-competitions.appsp
 
 Challenge data: <https://storage.googleapis.com/coding-competitions.appspot.com/HC/2014/paris_54000.txt>
 
-
 Project for MIT course C25: [_Julia: Solving Real-World Problems with Computation_](https://github.com/mitmath/JuliaComputation)
 
-Based off of [_gdalle's package_](https://github.com/gdalle/HashCode2014.jl)
+Based off of [_gdalle's Julia package_](https://github.com/gdalle/HashCode2014.jl)
