@@ -9,10 +9,6 @@ Documentation for [Julia_Hashcode2014](https://github.com/davidfang00/Julia_Hash
 ```@index
 ```
 
-```@docs
-greedy(city)
-```
-
 ```@autodocs
 Modules = [Julia_Hashcode2014]
 ```

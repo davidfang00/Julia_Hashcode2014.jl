@@ -1,4 +1,9 @@
 # Julia_Hashcode2014
+
+
+[![Dev](https://img.shields.io/badge/docs-dev-blue.svg)](https://davidfang00.github.io/Julia_Hashcode2014.jl/dev/)
+[![Code Style: Blue](https://img.shields.io/badge/code%20style-blue-4495d1.svg)](https://github.com/invenia/BlueStyle)
+
 This repository contains a Julia package for the Hashcode2014 Challenge. 
 
 Team Name: BEE2
