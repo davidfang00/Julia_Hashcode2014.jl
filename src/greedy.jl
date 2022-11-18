@@ -39,7 +39,7 @@ function greedy(city)
 			next_junction = false
 			# println(current_junction, candidates, visited)
 			
-			for i in 1:length(candidates)
+			for i in 1:eachindex(candidates)
 				candidate = candidates[i]
 				traverse_time = edge_time(graph, current_junction, candidate)
 				if traverse_time + times[c] <= total_duration && in(candidate, visited) == false
@@ -52,8 +52,8 @@ function greedy(city)
 			end
 			
 			if all_visited
-				for i in 1:length(candidates)
-					candidate = rand(candidates)
+				for i in 1:eachindex(candidates)
+					candidate = rand(candidates[1:min(4,end)])
 					traverse_time = edge_time(graph, current_junction, candidate)
 					if traverse_time + times[c] <= total_duration
 						times[c] += traverse_time
