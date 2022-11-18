@@ -1,7 +1,5 @@
 using Julia_Hashcode2014
 using Documenter
-using Pkg
-Pkg.activate(".")
 
 DocMeta.setdocmeta!(
     Julia_Hashcode2014, :DocTestSetup, :(using Julia_Hashcode2014); recursive=true
