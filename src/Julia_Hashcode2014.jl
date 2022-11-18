@@ -14,6 +14,8 @@ export is_feasible, total_distance
 export random_walk
 export plot_streets
 
+export AdjacencyGraph 
+
 include("junction.jl")
 include("street.jl")
 include("city.jl")
@@ -23,4 +25,5 @@ include("utils.jl")
 include("random_walk.jl")
 include("plot.jl")
 
+include("adjacency_matrix.jl")
 end
