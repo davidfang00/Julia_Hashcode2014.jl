@@ -63,6 +63,9 @@ function outneighbors(g::AdjacencyGraph, u)
     return g.outneighbors[u]
 end
 
+"""
+    Create an [`AdjacencyGraph`](@ref) based on a city.
+"""
 function create_graph(city::City)
     return AdjacencyGraph(city)
 end
