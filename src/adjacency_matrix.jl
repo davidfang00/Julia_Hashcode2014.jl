@@ -11,13 +11,13 @@ Store a city in the form of an weighted adjacency graph. Weights are based on le
 Base.@kwdef struct AdjacencyGraph <: AbstractWeightedGraph
     outneighbors::Vector{Vector{Int}}
     weights::Vector{Vector{Float64}}
-    times::Dict{Tuple{Int, Int}, Float64}
+    times::Dict{Tuple{Int,Int},Float64}
 end
 
 function AdjacencyGraph(city::City)
     n = length(city.junctions)
     edges = Tuple{Int,Int,Float64,Float64}[]
-    
+
     for edge in city.streets # edges are stored as (u, v, length, time)
         push!(edges, (edge.endpointA, edge.endpointB, edge.distance, edge.duration))
         if edge.bidirectional
@@ -28,7 +28,7 @@ function AdjacencyGraph(city::City)
     outneighbors = [Int[] for v in 1:n]
     weights = [Float64[] for v in 1:n]
     times = Dict()
-    for (u, v, l, t) in sort(edges, rev=true, by=edges->edges[3]) # sort by longest length
+    for (u, v, l, t) in sort(edges; rev=true, by=edges -> edges[3]) # sort by longest length
         push!(outneighbors[u], v)
         push!(weights[u], l)
         times[(u, v)] = t
