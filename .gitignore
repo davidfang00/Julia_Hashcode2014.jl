@@ -5,3 +5,4 @@
 .CondaPkg/
 *.html
 solutions/
+.DS_Store
