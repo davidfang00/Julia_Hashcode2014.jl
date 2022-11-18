@@ -30,9 +30,6 @@ function greedy(city::City)
 
             current_junction = last(itineraries[c])
             candidates = outneighbors(graph, current_junction)
-            if isempty(candidates)
-                break
-            end
 
             all_visited = true
             next_junction = false
