@@ -14,7 +14,7 @@ export is_feasible, total_distance
 export random_walk
 export plot_streets
 
-export AdjacencyGraph 
+export AdjacencyGraph, create_graph
 
 include("junction.jl")
 include("street.jl")
