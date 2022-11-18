@@ -4,7 +4,7 @@ module Julia_Hashcode2014
 
 using Artifacts
 using PythonCall
-using HashCode2014
+# using HashCode2014
 
 export Junction
 export Street
