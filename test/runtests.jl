@@ -48,4 +48,10 @@ DocMeta.setdocmeta!(
         solution = random_walk(city)
         plot_streets(city, solution; path=nothing)
     end
+
+    @testset verbose = true "Test Greedy" begin
+        city = read_city()
+        solution = greedy(city)
+        @test is_feasible(solution, city)
+    end
 end

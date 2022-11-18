@@ -4,9 +4,9 @@ abstract type AbstractWeightedGraph end
     AdjacencyGraph
 Store a city in the form of an weighted adjacency graph. Weights are based on length. 
 # Fields
-- `outneighbors`: junctions
-- `weights`: weights based on length for each street.
-- `times`: the time it takes to travel a street. Stored as a dictionary keyed by (u, v).
+- `outneighbors::Vector{Vector{Int}}`: junctions
+- `weights::Vector{Vector{Float64}}`: weights based on length for each street.
+- `times::Dict{Tuple{Int,Int},Float64}`: the time it takes to travel a street.
 """
 Base.@kwdef struct AdjacencyGraph <: AbstractWeightedGraph
     outneighbors::Vector{Vector{Int}}
@@ -40,7 +40,7 @@ nb_vertices(g::AdjacencyGraph) = length(g.outneighbors)
 
 """
     edge_weight(g, u, v)
-Returns the distance that the path (u, v) will traverse.
+Returns the distance that the path (u, v) will traverse based on an [`AdjacencyGraph`](@ref) g.
 """
 function edge_weight(g::AdjacencyGraph, u, v)
     k = searchsortedfirst(g.outneighbors[u], v)
@@ -49,7 +49,7 @@ end
 
 """
     edge_time(g, u, v)
-Returns the time it takes to traverse the path (u, v).
+Returns the time it takes to traverse the path (u, v) based on an [`AdjacencyGraph`](@ref) g.
 """
 function edge_time(g::AdjacencyGraph, u, v)
     return g.times[(u, v)]
@@ -57,7 +57,7 @@ end
 
 """
     outneighbors(g, u)
-Returns the outneighbors of node u.
+Returns the outneighbors of node u based on an [`AdjacencyGraph`](@ref) g.
 """
 function outneighbors(g::AdjacencyGraph, u)
     return g.outneighbors[u]
