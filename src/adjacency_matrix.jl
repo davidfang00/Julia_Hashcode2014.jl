@@ -63,6 +63,6 @@ function outneighbors(g::AdjacencyGraph, u)
     return g.outneighbors[u]
 end
 
-function create_graph(city)
+function create_graph(city::City)
     return AdjacencyGraph(city)
 end

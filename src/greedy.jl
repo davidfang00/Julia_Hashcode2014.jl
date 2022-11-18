@@ -1,9 +1,9 @@
 """
     greedy(city)
 Implements a greedy algorithm for routing. Cars will take turns going down one street at a time based on the follow criteria:
-- Check if the node has been visited. If not, take the maximum distance while obeying time constraints.
-- If a node has been visited, check the next node.
-- If all possible nodes have been visited, choose a random node while obeying the time constraint.
+- Check if the neighboring node has been visited. If not, take the maximum distance path while obeying time constraints.
+- If a neighboring node has been visited, check the next node.
+- If all neighboring nodes have been visited, choose a random path to go down while obeying the time constraint.
 """
 function greedy(city::City)
     (; total_duration, nb_cars, starting_junction, streets) = city
