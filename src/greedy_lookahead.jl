@@ -19,9 +19,9 @@ end
 """
     lookahead_tree(graph, start, visited, n, time_remaining)
 Uses BFS to lookahead from the start node throughout the graph while obeying the time constraints. Uses a distance metric to select best itinerary.
-Returns a (best_dist, best_itinerary) tuple.
+Returns a (best distance, best itinerary) tuple.
 # Parameters
-- `graph::[`AdjacencyGraph`](@ref)`: The graph representing the city.
+- `graph::AdjacencyGraph`: The [`AdjacencyGraph`](@ref) representing the city.
 - `start`: The starting junction index.
 - `visited`: the (u, v) paths that have already been taken by any cars.
 - `n`: the number of levels to iterate for BFS.
