@@ -55,4 +55,18 @@ DocMeta.setdocmeta!(
         solution = greedy(city)
         @test is_feasible(solution, city)
     end
+
+    @testset verbose = true "Test Lookahead" begin
+        city = read_city()
+        graph = create_graph(city)
+        dist, itinerary = lookahead_tree(graph, 100, Set(), 10, 500)
+        @test length(itinerary) == 11
+        @test dist > 0
+    end
+
+    @testset verbose = true "Test Greedy Lookahead" begin
+        city = read_city()
+        solution = greedy_lookahead(city)
+        @test is_feasible(solution, city)
+    end
 end
