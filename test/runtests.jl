@@ -69,4 +69,10 @@ DocMeta.setdocmeta!(
         solution = greedy_lookahead(city)
         @test is_feasible(solution, city)
     end
+
+    @testset verbose = true "Test Greedy fandown" begin
+        city = read_city()
+        solution = fandown_greedy(city)
+        @test is_feasible(solution, city)
+    end
 end
