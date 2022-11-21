@@ -67,7 +67,15 @@ DocMeta.setdocmeta!(
     @testset verbose = true "Test Greedy Lookahead" begin
         city = read_city()
         solution = greedy_lookahead(city)
+        dist = total_distance(solution, city)
         @test is_feasible(solution, city)
+        @test dist > 0
+    end
+
+    @testset verbose = true "Test Find NESW" begin
+        city = read_city()
+        nesw = find_nesw(city)
+        @test length(nesw) == 4
     end
 
     @testset verbose = true "Test Greedy fandown" begin

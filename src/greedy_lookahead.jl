@@ -72,7 +72,7 @@ function lookahead_tree(graph, start, visited, n, time_remaining)
             if isempty(new_junctions)
                 for i in eachindex(candidates)
                     path_visited = deepcopy(junc.path_visited)
-                    candidate = rand(candidates[1:min(5, end)])
+                    candidate = rand(candidates)
                     traverse_time = edge_time(graph, current_junction, candidate)
                     dist = edge_weight(graph, current_junction, candidate)
 
@@ -84,7 +84,7 @@ function lookahead_tree(graph, start, visited, n, time_remaining)
                             junc,
                             candidate,
                             curr_time + traverse_time,
-                            dist_traveled + dist / 50.0,
+                            dist_traveled + dist / 1000.0,
                             path_visited,
                         )
 
@@ -114,15 +114,17 @@ function lookahead_tree(graph, start, visited, n, time_remaining)
 end
 
 """
-    greedy_lookahead(city, n_lookahead = 15, seq_steps = 7)
+    greedy_lookahead(city, n_lookahead, seq_steps)
 A greedy algorithm that uses BFS to lookahead from the start node throughout the graph while obeying the time constraints. Uses a distance metric to select best itinerary.
 # Parameters
 - `city`: The city (as a City from HashCode2014)
 - `n_lookahead`: The number of BFS levels to lookahead.
 - `seq_steps`: the number of steps to take for each car per round.
 """
-function greedy_lookahead(city, n_lookahead=15, seq_steps=7)
-    (; total_duration, nb_cars, starting_junction, streets) = city
+function greedy_lookahead(city, n_lookahead=15, seq_steps=5)
+    total_duration = city.total_duration
+    nb_cars = city.nb_cars
+    starting_junction = city.starting_junction
     # total_duration = 1000
     println(total_duration)
     graph = create_graph(city)
@@ -138,6 +140,9 @@ function greedy_lookahead(city, n_lookahead=15, seq_steps=7)
 
     while all(terminate) == false
         for c in 1:nb_cars
+            if terminate[c]
+                continue
+            end
             current_junction = last(itineraries[c])
             dist, iten = lookahead_tree(
                 graph, current_junction, visited, n_lookahead, total_duration - times[c]

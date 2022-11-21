@@ -6,7 +6,9 @@ Implements a greedy algorithm for routing. Cars will take turns going down one s
 - If all neighboring nodes have been visited, choose a random path to go down while obeying the time constraint.
 """
 function greedy(city::City)
-    (; total_duration, nb_cars, starting_junction, streets) = city
+    total_duration = city.total_duration
+    nb_cars = city.nb_cars
+    starting_junction = city.starting_junction
     # total_duration = 1000
     println(total_duration)
     graph = create_graph(city)
