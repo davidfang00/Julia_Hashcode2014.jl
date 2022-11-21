@@ -83,4 +83,12 @@ DocMeta.setdocmeta!(
         solution = fandown_greedy(city)
         @test is_feasible(solution, city)
     end
+
+    @testset verbose = true "Test Dijkstra" begin
+        city = read_city()
+        graph = create_graph(city)
+        dists, parents = dijkstra(graph, city.starting_junction)
+        nesw = find_nesw(city)
+        @test dists[nesw] == [587.0, 1124.0, 984.0, 1027.0]
+    end
 end
