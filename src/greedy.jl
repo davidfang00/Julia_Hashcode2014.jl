@@ -10,28 +10,22 @@ function greedy(city::City)
     nb_cars = city.nb_cars
     starting_junction = city.starting_junction
     # total_duration = 1000
-    println(total_duration)
+    @info "Total Duration" (total_duration)
     graph = create_graph(city)
 
     itineraries = [[starting_junction] for i in 1:nb_cars]
     times = zeros(nb_cars)
     terminate = falses(nb_cars)
-    println(itineraries, typeof(itineraries))
-    println(times, typeof(times))
-    println(terminate, typeof(terminate))
 
     visited = Set()
 
     while all(terminate) == false
         for c in 1:nb_cars
-            # println(c, itineraries[c], times, terminate)
-
             current_junction = last(itineraries[c])
             candidates = outneighbors(graph, current_junction)
 
             all_visited = true
             next_junction = false
-            # println(current_junction, candidates, visited)
 
             for i in eachindex(candidates)
                 candidate = candidates[i]
@@ -41,7 +35,6 @@ function greedy(city::City)
                     all_visited = false
                     times[c] += traverse_time
                     next_junction = candidate
-                    # println(candidate)
                     break
                 end
             end
@@ -57,10 +50,8 @@ function greedy(city::City)
                     end
                 end
             end
-            # println(c, next_junction)
 
             if next_junction == false
-                # println(c)
                 terminate[c] = true
             else
                 push!(itineraries[c], next_junction)
@@ -68,6 +59,6 @@ function greedy(city::City)
             end
         end
     end
-    println(times)
+    @info "End" times
     return Solution(itineraries)
 end

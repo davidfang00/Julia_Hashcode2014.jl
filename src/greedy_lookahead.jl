@@ -126,15 +126,12 @@ function greedy_lookahead(city, n_lookahead=15, seq_steps=5)
     nb_cars = city.nb_cars
     starting_junction = city.starting_junction
     # total_duration = 1000
-    println(total_duration)
+    @info "Total Duration" (total_duration)
     graph = create_graph(city)
 
     itineraries = [[starting_junction] for i in 1:nb_cars]
     times = zeros(nb_cars)
     terminate = falses(nb_cars)
-    println(itineraries, typeof(itineraries))
-    println(times, typeof(times))
-    println(terminate, typeof(terminate))
 
     visited = Set{Tuple{Int64,Int64}}()
 
@@ -165,6 +162,6 @@ function greedy_lookahead(city, n_lookahead=15, seq_steps=5)
         end
     end
 
-    println(times)
+    @info "End" times
     return Solution(itineraries)
 end

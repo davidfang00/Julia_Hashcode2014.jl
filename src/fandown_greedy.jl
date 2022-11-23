@@ -11,7 +11,7 @@ A greedy algorithm that uses BFS to lookahead from the start node throughout the
 function fandown_greedy(city, n_lookahead=15, seq_steps=7, init_iter=100, diff_rand=5)
     (; total_duration, nb_cars, starting_junction, streets) = city
     # total_duration = 1000
-    print(total_duration)
+    @info "Total Duration" (total_duration)
     graph = create_graph(city)
 
     itineraries = [[starting_junction] for i in 1:nb_cars]
@@ -75,6 +75,6 @@ function fandown_greedy(city, n_lookahead=15, seq_steps=7, init_iter=100, diff_r
         end
     end
 
-    println(times)
+    @info "End" times
     return Solution(itineraries)
 end
