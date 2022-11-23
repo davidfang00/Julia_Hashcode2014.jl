@@ -22,34 +22,6 @@ DocMeta.setdocmeta!(
         doctest(Julia_Hashcode2014)
     end
 
-    @testset verbose = true "Small instance" begin
-        input_path = joinpath(@__DIR__, "data", "example_input.txt")
-        output_path = joinpath(@__DIR__, "data", "example_output.txt")
-        city = read_city(input_path)
-        solution = read_solution(output_path)
-        open(input_path, "r") do file
-            @test string(city) == read(file, String)
-        end
-        open(output_path, "r") do file
-            @test string(solution) == read(file, String)
-        end
-        @test is_feasible(solution, city)
-        @test total_distance(solution, city) == 450
-    end
-
-    @testset verbose = true "Large instance" begin
-        city = read_city()
-        solution = random_walk(city)
-        @test city.total_duration == 54000
-        @test is_feasible(solution, city)
-    end
-
-    @testset verbose = true "Plotting" begin
-        city = read_city()
-        solution = random_walk(city)
-        plot_streets(city, solution; path=nothing)
-    end
-
     @testset verbose = true "Test Greedy" begin
         city = read_city()
         solution = greedy(city)
