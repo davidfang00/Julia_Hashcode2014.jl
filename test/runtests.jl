@@ -61,6 +61,9 @@ DocMeta.setdocmeta!(
         graph = create_graph(city)
         dists, parents = dijkstra(graph, city.starting_junction)
         nesw = find_nesw(city)
+        path = spath(city.starting_junction, dists, city.starting_junction, parents)
         @test dists[nesw] ≈ [587.0, 1124.0, 984.0, 1027.0]
+        @test length(path) == 1
+        @test path[1] == city.starting_junction
     end
 end
