@@ -28,12 +28,12 @@ end
 
 """
     spath(x, dists, source, parents)
-Returns the shortest path (in terms of time) from the source `s` to the junction `x`.
+Returns the shortest path (in terms of time) from the source to the junction `x`.
 # Parameters
 - `x`: The target junction index.
-- `dists`: The shortest paths in terms of time.
+- `dists`: The shortest paths in terms of time from dijkstra.
 - `source`: The source junction index.
-- `parents`: The parents array.
+- `parents`: The parents array from dijkstra.
 """
 function spath(x, dists, source, parents)
     return x == source ? x : [spath(parents[x], dists, source, parents) x]

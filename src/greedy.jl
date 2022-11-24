@@ -4,6 +4,11 @@ Implements a greedy algorithm for routing. Cars will take turns going down one s
 - Check if the neighboring node has been visited. If not, take the maximum distance path while obeying time constraints.
 - If a neighboring node has been visited, check the next node.
 - If all neighboring nodes have been visited, choose a random path to go down while obeying the time constraint.
+
+Takes around 1-2 seconds to run and obtains a score of around 1.1-1.25 million.
+
+# Parameters
+- `city::City`: The city (as a City from HashCode2014)
 """
 function greedy(city::City)
     total_duration = city.total_duration

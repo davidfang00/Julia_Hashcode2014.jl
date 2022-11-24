@@ -1,11 +1,14 @@
 """
-    greedy_lookahead(city, n_lookahead = 15, seq_steps = 7, init_iter = 100, diff_rand = 5)
-A greedy algorithm that uses BFS to lookahead from the start node throughout the graph while obeying the time constraints. Uses a distance metric to select best itinerary.
+    fandown_greedy(city, n_lookahead = 15, seq_steps = 7, init_iter = 100, diff_rand = 5)
+A greedy algorithm that uses BFS to lookahead from the start node throughout the graph while obeying the time constraints. At the start, has all cars "fandown" to reach a more center position in the city. Uses a distance metric to select best itinerary.
+
+Takes around 15 seconds to run (with default parameters) and obtains a score of around 1.35-1.47 million.
+
 # Parameters
 - `city`: The city (as a City from HashCode2014)
 - `n_lookahead`: The number of BFS levels to lookahead.
 - `seq_steps`: the number of steps to take for each car per round.
-- `init_iter`: number of iterations to fan down the cars in the beginning
+- `init_iter`: number of iterations to fandown the cars in the beginning
 - `diff_rand`: probability must taking the same path
 """
 function fandown_greedy(city::City, n_lookahead=15, seq_steps=7, init_iter=100, diff_rand=5)
