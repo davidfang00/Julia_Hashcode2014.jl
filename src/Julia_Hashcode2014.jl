@@ -14,6 +14,7 @@ export fandown_greedy
 export dijkstra, spath
 export TreeNode
 export lookahead_tree
+export find_bound
 
 include("adjacency_matrix.jl")
 include("greedy.jl")
@@ -23,4 +24,5 @@ include("fandown_greedy.jl")
 include("dijkstra.jl")
 include("TreeNode.jl")
 include("lookahead_tree.jl")
+include("bounds.jl")
 end

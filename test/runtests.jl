@@ -66,4 +66,10 @@ DocMeta.setdocmeta!(
         @test length(path) == 1
         @test path[1] == city.starting_junction
     end
+
+    @testset verbose = true "Test Bounds" begin
+        city = read_city()
+        bound = find_bound(city, 8, 54000.0)
+        @test bound > 0
+    end
 end
