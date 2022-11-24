@@ -27,7 +27,7 @@ Returns a (best distance, best itinerary) tuple.
 - `n`: the number of levels to iterate for BFS.
 - `time_remaining`: the remaining time for the car to travel.
 """
-function lookahead_tree(graph, start, visited, n, time_remaining)
+function lookahead_tree(graph::AdjacencyGraph, start, visited, n, time_remaining)
     start_node = TreeNode(nothing, start, 0.0, 0.0, Set{Tuple{Int64,Int64}}())
     current_junctions = [start_node]
     best_node = start_node
@@ -117,11 +117,11 @@ end
     greedy_lookahead(city, n_lookahead, seq_steps)
 A greedy algorithm that uses BFS to lookahead from the start node throughout the graph while obeying the time constraints. Uses a distance metric to select best itinerary.
 # Parameters
-- `city`: The city (as a City from HashCode2014)
+- `city::City`: The city (as a City from HashCode2014)
 - `n_lookahead`: The number of BFS levels to lookahead.
 - `seq_steps`: the number of steps to take for each car per round.
 """
-function greedy_lookahead(city, n_lookahead=15, seq_steps=5)
+function greedy_lookahead(city::City, n_lookahead=15, seq_steps=5)
     total_duration = city.total_duration
     nb_cars = city.nb_cars
     starting_junction = city.starting_junction

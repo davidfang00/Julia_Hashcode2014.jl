@@ -6,7 +6,7 @@ Returns a tuple (shortest_path, parents).
 - `g`: The city as a [`AdjacencyGraph`](@ref).
 - `s`: The source junction index.
 """
-function dijkstra(g, s)
+function dijkstra(g::AdjacencyGraph, s)
     dist = fill(Inf, nb_vertices(g))
     parents = fill(9999999, nb_vertices(g))
 

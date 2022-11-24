@@ -3,9 +3,9 @@
 Finds the most north, east, south, and west points of a city by using the min/max latitude and longitude.
 Returns result as a vector [N, E, S, W] with elements as junction indices.
 # Parameters
-- `city`: The city (as a City from HashCode2014)
+- `city::City`: The city (as a City from HashCode2014)
 """
-function find_nesw(city)
+function find_nesw(city::City)
     result = Vector{Int}()
     junctions = city.junctions
     latitudes = [j.latitude for j in junctions]

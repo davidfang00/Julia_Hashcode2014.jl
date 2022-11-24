@@ -8,7 +8,7 @@ A greedy algorithm that uses BFS to lookahead from the start node throughout the
 - `init_iter`: number of iterations to fan down the cars in the beginning
 - `diff_rand`: probability must taking the same path
 """
-function fandown_greedy(city, n_lookahead=15, seq_steps=7, init_iter=100, diff_rand=5)
+function fandown_greedy(city::City, n_lookahead=15, seq_steps=7, init_iter=100, diff_rand=5)
     (; total_duration, nb_cars, starting_junction, streets) = city
     # total_duration = 1000
     @info "Total Duration" (total_duration)
