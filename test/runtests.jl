@@ -62,9 +62,18 @@ DocMeta.setdocmeta!(
         dists, parents = dijkstra(graph, city.starting_junction)
         nesw = find_nesw(city)
         path = spath(city.starting_junction, dists, city.starting_junction, parents)
+        path2 = spath(
+            outneighbors(graph, city.starting_junction)[1],
+            dists,
+            city.starting_junction,
+            parents,
+        )
         @test dists[nesw] ≈ [587.0, 1124.0, 984.0, 1027.0]
         @test length(path) == 1
+        @test length(path2) == 2
         @test path[1] == city.starting_junction
+        @test path2 ==
+            [city.starting_junction, outneighbors(graph, city.starting_junction)[1]]
     end
 
     @testset verbose = true "Test Bounds" begin

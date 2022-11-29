@@ -36,5 +36,11 @@ Returns the shortest path (in terms of time) from the source to the junction `x`
 - `parents`: The parents array from dijkstra.
 """
 function spath(x, dists::Vector{Float64}, source, parents::Vector{Int64})
-    return x == source ? x : [spath(parents[x], dists, source, parents) x]
+    if source == x
+        return [x]
+    end
+
+    before = spath(parents[x], dists, source, parents)
+    append!(before, [x])
+    return before
 end
