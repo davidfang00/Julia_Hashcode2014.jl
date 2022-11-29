@@ -8,7 +8,7 @@ Returns a tuple (shortest_path, parents).
 """
 function dijkstra(g::AdjacencyGraph, s)
     dist = fill(Inf, nb_vertices(g))
-    parents = fill(9999999, nb_vertices(g))
+    parents = fill(-1, nb_vertices(g))
 
     queue = PriorityQueue{Int,Float64}()
     enqueue!(queue, s => 0.0)
@@ -35,6 +35,6 @@ Returns the shortest path (in terms of time) from the source to the junction `x`
 - `source`: The source junction index.
 - `parents`: The parents array from dijkstra.
 """
-function spath(x, dists, source, parents)
+function spath(x, dists::Vector{Float64}, source, parents::Vector{Int64})
     return x == source ? x : [spath(parents[x], dists, source, parents) x]
 end

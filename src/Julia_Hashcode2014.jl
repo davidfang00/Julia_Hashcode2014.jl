@@ -2,7 +2,6 @@ module Julia_Hashcode2014
 
 # Write your package code here.
 
-using PythonCall
 using HashCode2014
 using DataStructures
 
