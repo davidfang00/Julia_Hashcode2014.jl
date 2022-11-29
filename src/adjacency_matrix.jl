@@ -27,7 +27,7 @@ function AdjacencyGraph(city::City)
 
     outneighbors = [Int[] for v in 1:n]
     weights = [Float64[] for v in 1:n]
-    times = Dict()
+    times = Dict{Tuple{Int,Int},Float64}()
     for (u, v, l, t) in sort(edges; rev=true, by=edges -> edges[3]) # sort by longest length
         push!(outneighbors[u], v)
         push!(weights[u], l)
