@@ -30,7 +30,7 @@ DocMeta.setdocmeta!(
 
     @testset verbose = true "Test Lookahead" begin
         city = read_city()
-        graph = create_graph(city)
+        graph = AdjacencyGraph(city)
         dist, itinerary = lookahead_tree(graph, 100, Set(), 10, 500)
         @test length(itinerary) == 11
         @test dist > 0
@@ -58,7 +58,7 @@ DocMeta.setdocmeta!(
 
     @testset verbose = true "Test Dijkstra" begin
         city = read_city()
-        graph = create_graph(city)
+        graph = AdjacencyGraph(city)
         dists, parents = dijkstra(graph, city.starting_junction)
         nesw = find_nesw(city)
         path = spath(city.starting_junction, dists, city.starting_junction, parents)

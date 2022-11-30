@@ -62,11 +62,3 @@ Returns the outneighbors of node u based on an [`AdjacencyGraph`](@ref) g.
 function outneighbors(g::AdjacencyGraph, u)
     return g.outneighbors[u]
 end
-
-"""
-    create_graph(city)
-Create an [`AdjacencyGraph`](@ref) based on a city.
-"""
-function create_graph(city::City)
-    return AdjacencyGraph(city)
-end

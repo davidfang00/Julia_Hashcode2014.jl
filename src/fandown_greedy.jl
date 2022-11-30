@@ -15,7 +15,7 @@ function fandown_greedy(city::City, n_lookahead=15, seq_steps=7, init_iter=100, 
     (; total_duration, nb_cars, starting_junction, streets) = city
     # total_duration = 1000
     @info "Total Duration" (total_duration)
-    graph = create_graph(city)
+    graph = AdjacencyGraph(city)
 
     itineraries = [[starting_junction] for i in 1:nb_cars]
     times = zeros(nb_cars)

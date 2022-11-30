@@ -5,7 +5,7 @@ module Julia_Hashcode2014
 using HashCode2014
 using DataStructures
 
-export AdjacencyGraph, create_graph, outneighbors, edge_time, edge_weight, nb_vertices
+export AdjacencyGraph, outneighbors, edge_time, edge_weight, nb_vertices
 export greedy
 export lookahead_tree, greedy_lookahead
 export find_nesw

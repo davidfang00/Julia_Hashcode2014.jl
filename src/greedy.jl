@@ -16,7 +16,7 @@ function greedy(city::City)
     starting_junction = city.starting_junction
     # total_duration = 1000
     @info "Total Duration" (total_duration)
-    graph = create_graph(city)
+    graph = AdjacencyGraph(city)
 
     itineraries = [[starting_junction] for i in 1:nb_cars]
     times = zeros(nb_cars)
