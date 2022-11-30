@@ -16,7 +16,7 @@ makedocs(;
         edit_link="main",
         assets=String[],
     ),
-    pages=["Home" => "index.md"],
+    pages=["Home" => "index.md", "Algorithms" => "algos.md"],
 )
 
 deploydocs(; repo="github.com/davidfang00/Julia_Hashcode2014.jl", devbranch="main")
