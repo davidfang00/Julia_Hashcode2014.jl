@@ -22,7 +22,7 @@ function greedy(city::City)
     times = zeros(nb_cars)
     terminate = falses(nb_cars)
 
-    visited = Set()
+    visited = Set{Union{Tuple{Int64,Int64},Int64}}()
 
     while all(terminate) == false
         for c in 1:nb_cars

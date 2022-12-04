@@ -21,7 +21,7 @@ function fandown_greedy(city::City, n_lookahead=15, seq_steps=7, init_iter=100, 
     times = zeros(nb_cars)
     terminate = falses(nb_cars)
 
-    visited = Set()
+    visited = Set{Union{Tuple{Int64,Int64},Int64}}()
 
     for iter in 1:init_iter
         for c in 1:nb_cars
