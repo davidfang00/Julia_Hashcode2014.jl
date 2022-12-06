@@ -8,4 +8,6 @@ Documentation for the algorithms in [Julia_Hashcode2014](https://github.com/davi
 
 ## Greedy
 
-## Greedy Fandown
+## Greedy Lookahead
+
+## Greedy Lookhead+Fandown
