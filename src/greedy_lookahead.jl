@@ -216,7 +216,7 @@ function greedy_lookahead_dijkstras_fandown(city, n_lookahead=15, seq_steps=15)
     # when you take out the duplicate paths, you get time back so we run the lookahead_tree_bounded
     # again starting where the last run finished and just let the cars run for whatever amount of time they 
     # have saved after removing duplicates
-    for c in nb_cars:1:-1
+    for c in nb_cars:-1:1
         loop_count = 0
         while terminate[c] == false
             loop_count += 1
