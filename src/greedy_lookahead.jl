@@ -82,6 +82,7 @@ function greedy_lookahead_dijkstras_fandown(city, n_lookahead=15, seq_steps=15)
 
     nesw = find_nesw(city)
     nesw_junctions = city.junctions[nesw]
+    # finds the latitude and longitude bounds by using NESW points
     mid_lat = (nesw_junctions[1].latitude + nesw_junctions[3].latitude) / 2
     mid_long = (nesw_junctions[2].longitude + nesw_junctions[4].longitude) / 2
     lat25 = (nesw_junctions[3].latitude + mid_lat) / 2
@@ -89,11 +90,13 @@ function greedy_lookahead_dijkstras_fandown(city, n_lookahead=15, seq_steps=15)
     long25 = (mid_long + nesw_junctions[4].longitude) / 2
     long75 = (mid_long + nesw_junctions[2].longitude) / 2
 
+    # sends cars out to NESW points
     dists, parents = dijkstra(graph, starting_junction)
     for c in 1:min(length(nesw), nb_cars)
         current_junction = starting_junction
         target = nesw[c]
         path = spath(target, dists, starting_junction, parents)
+        # sends the cars about 86% of the way towards the bound ends
         for stops in 2:trunc(Int, length(path) / 1.15)
             next_junction = path[stops][1]
             traverse_time = edge_time(graph, current_junction, next_junction)
@@ -106,6 +109,7 @@ function greedy_lookahead_dijkstras_fandown(city, n_lookahead=15, seq_steps=15)
         end
     end
 
+    # fandowns the rest of the cars (5-8)
     init_iter = 40
     diff_rand = 5
     for iter in 1:init_iter
@@ -139,6 +143,7 @@ function greedy_lookahead_dijkstras_fandown(city, n_lookahead=15, seq_steps=15)
         end
     end
 
+    # 1 runthrough of lookahead method, stops at loop_count bc it gets slow after that point
     for c in 1:nb_cars
         loop_count = 0
         while terminate[c] == false
@@ -198,6 +203,8 @@ function greedy_lookahead_dijkstras_fandown(city, n_lookahead=15, seq_steps=15)
         end
     end
 
+    # removes duplicates (loop between two points) like when you go from junction 1 to junction 2
+    # and then back
     for j in 1:5
         for i in 1:length(itineraries)
             itineraries[i] = remove_dups(itineraries[i])
@@ -206,6 +213,9 @@ function greedy_lookahead_dijkstras_fandown(city, n_lookahead=15, seq_steps=15)
     times = recalculate_times(graph, itineraries)
     terminate = falses(nb_cars)
 
+    # when you take out the duplicate paths, you get time back so we run the lookahead_tree_bounded
+    # again starting where the last run finished and just let the cars run for whatever amount of time they 
+    # have saved after removing duplicates
     for c in nb_cars:1:-1
         loop_count = 0
         while terminate[c] == false
