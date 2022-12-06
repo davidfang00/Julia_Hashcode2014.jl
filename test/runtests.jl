@@ -81,4 +81,23 @@ DocMeta.setdocmeta!(
         bound = find_bound(city, 8, 54000.0)
         @test bound > 0
     end
+
+    @testset verbose = true "Test Metrics" begin
+        new_node = TreeNode(nothing, 10, 15.0, 150.0, Set())
+        m = node_metric(new_node)
+        @test m ≈ 10.0
+    end
+
+    @testset verbose = true "Test Remove Dups" begin
+        i = [1, 2, 3, 1, 2, 1, 2, 3, 4, 5]
+        removed_it = remove_dups(i)
+        @test removed_it == [1, 2, 3, 1, 2, 3, 4, 5]
+    end
+    greedy_lookahead_dijkstras_fandown
+
+    @testset verbose = true "Test Greedy Lookahead Dijkstras Fandown" begin
+        city = read_city()
+        solution = greedy_lookahead_dijkstras_fandown(city)
+        @test is_feasible(solution, city)
+    end
 end
