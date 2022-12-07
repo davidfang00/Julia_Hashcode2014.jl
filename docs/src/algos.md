@@ -15,7 +15,7 @@ If all outgoing neighbors have been visited, the car will choose a random juncti
 
 The algorithm take 1-2 seconds and achieves approximately 1.1-1.25 million meters traveled under the 54000 second time constraint.
 
-##Greedy Lookahead
+## Greedy Lookahead
 
 A simple greedy algorithm can be better optimized with the addition of a lookahead approach. Under the lookahead approach, instead of the cars simply choosing the immediate street that offers the longest distance at each junction stop, the cars will now look at various paths from the current junction that contain the next 15 streets in sequence with the goal that that this path of 15 streets will be the longest distance covered in within the 15 timestamps. Thus, for each car, the greedy lookahead approach still uses a distance metric and utilizes BFS of 15 levels in oder to find the most optimal path to take at a current junction.
 
