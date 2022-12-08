@@ -76,9 +76,15 @@ DocMeta.setdocmeta!(
             [city.starting_junction, outneighbors(graph, city.starting_junction)[1]]
     end
 
-    @testset verbose = true "Test Bounds" begin
+    @testset verbose = true "Test Large Bounds" begin
         city = read_city()
         bound = find_bound(city, 8, 54000.0)
+        @test bound > 0
+    end
+
+    @testset verbose = true "Test Small Bounds" begin
+        city = read_city()
+        bound = find_bound(city, 8, 18000.0)
         @test bound > 0
     end
 

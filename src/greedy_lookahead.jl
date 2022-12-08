@@ -203,8 +203,7 @@ function greedy_lookahead_dijkstras_fandown(city, n_lookahead=15, seq_steps=15)
         end
     end
 
-    # removes duplicates (loop between two points) like when you go from junction 1 to junction 2
-    # and then back
+    # removes duplicates (loop between two points) like when you go from 1->2->1->2->...
     for j in 1:5
         for i in 1:length(itineraries)
             itineraries[i] = remove_dups(itineraries[i])
