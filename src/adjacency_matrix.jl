@@ -43,7 +43,7 @@ nb_vertices(g::AdjacencyGraph) = length(g.outneighbors)
 Returns the distance that the path (u, v) will traverse based on an [`AdjacencyGraph`](@ref) g.
 
 # Parameters
-- `g::[`AdjacencyGraph`](@ref)`: The adjacency graph.
+- `g::AdjacencyGraph`: The adjacency graph.
 - `u`: a node u.
 - `v`: a node v.
 """
@@ -57,7 +57,7 @@ end
 Returns the time it takes to traverse the path (u, v) based on an [`AdjacencyGraph`](@ref) g.
 
 # Parameters
-- `g::[`AdjacencyGraph`](@ref)`: The adjacency graph.
+- `g::AdjacencyGraph`: The adjacency graph.
 - `u`: a node u.
 - `v`: a node v.
 """
@@ -70,7 +70,7 @@ end
 Returns the outneighbors of node u based on an [`AdjacencyGraph`](@ref) g.
 
 # Parameters
-- `g::[`AdjacencyGraph`](@ref)`: The adjacency graph.
+- `g::AdjacencyGraph`: The adjacency graph.
 - `u`: a node u.
 """
 function outneighbors(g::AdjacencyGraph, u)

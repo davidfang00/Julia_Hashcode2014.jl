@@ -76,16 +76,12 @@ DocMeta.setdocmeta!(
             [city.starting_junction, outneighbors(graph, city.starting_junction)[1]]
     end
 
-    @testset verbose = true "Test Large Bounds" begin
+    @testset verbose = true "Test Bounds" begin
         city = read_city()
-        bound = find_bound(city, 8, 54000.0)
-        @test bound > 0
-    end
-
-    @testset verbose = true "Test Small Bounds" begin
-        city = read_city()
-        bound = find_bound(city, 8, 18000.0)
-        @test bound > 0
+        large_bound = find_bound(city, 8, 54000.0)
+        small_bound = find_bound(city, 8, 18000.0)
+        @test large_bound > 0
+        @test small_bound > 0
     end
 
     @testset verbose = true "Test Metrics" begin
@@ -95,9 +91,12 @@ DocMeta.setdocmeta!(
     end
 
     @testset verbose = true "Test Remove Dups" begin
-        i = [1, 2, 3, 1, 2, 1, 2, 3, 4, 5]
+        i = [1, 2, 3, 1, 2, 1, 2, 8, 4, 5]
         removed_it = remove_dups(i)
-        @test removed_it == [1, 2, 3, 1, 2, 3, 4, 5]
+        i2 = [1, 2, 3, 1, 2]
+        removed_it2 = remove_dups(i2)
+        @test removed_it == [1, 2, 3, 1, 2, 8, 4, 5]
+        @test removed_it2 == i2
     end
 
     @testset verbose = true "Test Greedy Lookahead Dijkstras Fandown" begin
