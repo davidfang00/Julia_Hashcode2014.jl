@@ -60,7 +60,7 @@ Sends 4 cars to the N/E/S/W corners using Dijkstra's and uses fandown for the re
 Uses lookahead_tree_bounded as a lookahead algorithm and uses a speed metric to select best itinerary.
 Removes duplicates and repeats the lookahead algorithm.
 
-Takes around 20 seconds to run (with default parameters) and obtains a score of around 1.65-1.8 million.
+Takes around 30 seconds to run (with default parameters) and obtains a score of around 1.65-1.8 million.
 
 # Parameters
 - `city::City`: The city (as a City from HashCode2014)
@@ -143,6 +143,18 @@ function greedy_lookahead_dijkstras_fandown(city, n_lookahead=15, seq_steps=15)
         end
     end
 
+    # the bounds for 8 cars
+    bounds = [
+        (mid_lat, 1000, mid_long, 1000),
+        (0, mid_lat, mid_long, 1000),
+        (0, mid_lat, 0, mid_long),
+        (mid_lat, 1000, 0, mid_long),
+        (mid_lat, 1000, 0, 1000),
+        (0, 1000, mid_long, 1000),
+        (0, mid_lat, 0, 1000),
+        (0, 1000, 0, mid_long),
+    ]
+
     # 1 runthrough of lookahead method, stops at loop_count bc it gets slow after that point
     for c in 1:nb_cars
         loop_count = 0
@@ -150,24 +162,7 @@ function greedy_lookahead_dijkstras_fandown(city, n_lookahead=15, seq_steps=15)
             loop_count += 1
 
             current_junction = last(itineraries[c])
-            lat_min, lat_max, long_min, long_max = 0, 1000, 0, 1000
-            if c == 1
-                lat_min, lat_max, long_min, long_max = mid_lat, 1000, mid_long, 1000
-            elseif c == 2
-                lat_min, lat_max, long_min, long_max = 0, mid_lat, mid_long, 1000
-            elseif c == 3
-                lat_min, lat_max, long_min, long_max = 0, mid_lat, 0, mid_long
-            elseif c == 4
-                lat_min, lat_max, long_min, long_max = mid_lat, 1000, 0, mid_long
-            elseif c == 5
-                lat_min, lat_max, long_min, long_max = mid_lat, 1000, 0, 1000
-            elseif c == 6
-                lat_min, lat_max, long_min, long_max = 0, 1000, mid_long, 1000
-            elseif c == 7
-                lat_min, lat_max, long_min, long_max = 0, mid_lat, 0, 1000
-            elseif c == 8
-                lat_min, lat_max, long_min, long_max = 0, 1000, 0, mid_long
-            end
+            lat_min, lat_max, long_min, long_max = bounds[c]
 
             dist, iten = lookahead_tree_bounded(
                 graph,
@@ -204,12 +199,12 @@ function greedy_lookahead_dijkstras_fandown(city, n_lookahead=15, seq_steps=15)
     end
 
     # removes duplicates (loop between two points) like when you go from 1->2->1->2->...
-    for j in 1:5
+    for j in 1:3
         for i in 1:length(itineraries)
             itineraries[i] = remove_dups(itineraries[i])
         end
     end
-    times = recalculate_times(graph, itineraries)
+    times = recalculate_times(graph, itineraries) # recalculate the times
     terminate = falses(nb_cars)
 
     # when you take out the duplicate paths, you get time back so we run the lookahead_tree_bounded
@@ -221,7 +216,8 @@ function greedy_lookahead_dijkstras_fandown(city, n_lookahead=15, seq_steps=15)
             loop_count += 1
 
             current_junction = last(itineraries[c])
-            lat_min, lat_max, long_min, long_max = 0, 1000, 0, 1000
+            lat_min, lat_max, long_min, long_max = bounds[c]
+
             dist, iten = lookahead_tree_bounded(
                 graph,
                 current_junction,
