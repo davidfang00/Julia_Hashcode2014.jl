@@ -99,7 +99,6 @@ DocMeta.setdocmeta!(
         removed_it = remove_dups(i)
         @test removed_it == [1, 2, 3, 1, 2, 3, 4, 5]
     end
-    greedy_lookahead_dijkstras_fandown
 
     @testset verbose = true "Test Greedy Lookahead Dijkstras Fandown" begin
         city = read_city()
