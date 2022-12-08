@@ -6,6 +6,8 @@ CurrentModule = Julia_Hashcode2014
 
 Documentation for the algorithms in [Julia_Hashcode2014](https://github.com/davidfang00/Julia_Hashcode2014.jl).
 
+This document outlines many separate algorithms that each described with performance in mind. It is then followed by the most optimal solution at the end of the document that incorporates all the separate algorithms together into one complete algorithm.
+
 ## Greedy
 
 The greedy approach is the one of the simplest approaches to implement that yields fairly sufficient results. In short, the greedy approach entails cars taking turns going down one street at a time and at each junction, the cars will determine the next street to take based off the following criteria:
@@ -60,7 +62,7 @@ This algorithm does not run on its own and is used in addition to the next algor
 ![Dijkatra's NESW](nesw.png)
 *Dijkstra's is used to send the first 4 cars to the NESW points*
 
-## Greedy Lookahead+Dijkstra+Fandown 
+## Greedy Lookahead+Dijkstra+Fandown (OPTIMAL Solution)
 
 This algorithm is a combination of the greedy lookahead, Dijkstra's, and fandown approach. To begin, the first 4 cars are sent in the north, east, south, and west positions using Dijkstra's. It is not necessary to send the cars all the way to the very ends/boundary of the map during this process so we stop the cars ~85% of the way during their respective Dijkstra's paths. 
 
