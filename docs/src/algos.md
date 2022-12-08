@@ -57,7 +57,7 @@ Rather than probabilistically sending cars down to a certain location at the sta
 
 Once the 4 junctions have been found that sends them into the north, east, south, and west positions, Dijkstra's algorithm is used to send 4 cars to these positions in the shortest amount of time. 
 
-With the priority queue using julia's data structure package to improve efficiency, Dijkstra's algorithm runs in O((E + V) log(V)). Additionally, we are only running Dijkstra's for the frist 4 cars, so it is not such a huge hit on performance.
+With the priority queue using Julia's DataStructure package to improve efficiency, Dijkstra's algorithm runs in O((E + V) log(V)). Additionally, we are only running Dijkstra's for the first 4 cars, so it is not such a huge hit on performance.
 
 This algorithm does not run on its own and is used in addition to the next algorithm discussed that combines all algorithms together (Greedy Lookahead+Dijkstras+Fandown).
 
@@ -81,9 +81,8 @@ Of course, this setup is ideal if we have 8 cars, but if we have less we simply 
 
 At this point, we have cars in strategic starting positions: 4 near the perimeter (located in the north, east, south, and west) and 4 near the center that are randomly slightly spaced out. The next step is to run greedy lookahead on the cars.
 
-The greedy lookahead works similar to the one mentioned above except that we use BFS with a speed metirc instead of a distance metric. Additionally, to ensure that the cars are traversing in their respective sections without crossing bounds, if a street leads a car to a junction that crosses its respective section’s boundary, a discount factor is applied to the perceived distance so that the speed appears to be lower in the BFS tree and that street is less likely to get chosen. Again, we also choose unvisited streets first before visited ones. 
+The greedy lookahead works similar to the one mentioned above except that we use BFS with a speed metric instead of a distance metric. Additionally, to ensure that the cars are traversing in their respective sections without crossing bounds, if a street leads a car to a junction that crosses its respective section’s boundary, a discount factor is applied to the perceived distance so that the speed appears to be lower in the BFS tree and that street is less likely to get chosen. Again, we also choose unvisited streets first before visited ones. 
 
 An interesting artifact that results from the greedy lookahead approach is that sometimes duplicate street paths are taken. For example, let’s say there are junctions 1 and 2. With the algorithm, a car might hypothetically have the following path: [1, 2, 1, 2, 4, 5 ,6...]. Obviously, going from 1 to 2 back to 1 to 2 again is wasted time. As a result, once greedy-lookahead is applied, we inspect to see what duplicates exist and we remove them. We then add back time that was wasted from the duplicates and run the greedy lookahead again with the remaining time that is left.
 
-This is the ideal solution that runs in 20 seconds and achieves a score of 1.65-1.8 million. It's no surprise that time is around the same as the previous solutions discussed because time complexity has already been explained in previous sections and no further additions would exceedingly add to this time complexity. Additionally, no other space complexity is added due to the only other significant data structures being added outside of the adjaceny matrix were the lookahead trees (BFS trees), which has already been discussed.
-
+This is the ideal solution that runs in 20 seconds and achieves a score of 1.65-1.8 million. It's no surprise that time is around the same as the previous solutions discussed because time complexity has already been explained in previous sections and no further additions would exceedingly add to this time complexity. Additionally, no other space complexity is added due to the only other significant data structures being added outside of the adjacency matrix were the lookahead trees (BFS trees), which has already been discussed.
