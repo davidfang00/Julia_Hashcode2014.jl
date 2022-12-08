@@ -30,6 +30,8 @@ Like before, we want to avoid taking visited streets as much as possible in orde
 
 This algorithm will inherently be slower than a simple greedy algorithm and take more space as well. For each car, when it is ready to plan a path for the next 15 timestamps (getting ready to start a lookahead), it must first create a BFS tree from its current junction, which would be O(V) space complexity where V represents vertices or junctions. Traversing the BFS tree is also necessary to find an optimal path based on a distance metric so this would require O(V^15) time complexity to plan out a path for the next 15 steps (for the 15 levels of the BFS tree). Therefore, at the start of every 15 timestamps (beginning of lookahead), each car will have O(V^15) time complexity and O(V) space complexity.
 
+Originally, we ran into efficiency and memory problems with our first BFS approach because we stored each possible path and their visited streets set into a list of lists. This consumed a lot of memory and was highly inefficient because we didn't need to store every possible path. To overcome this, we created a tree structure, which only stored nodes that should be tracked, and the paths could be retrieved by backtracking.
+
 This algorithm greatly increases the score, but makes a tradeoff in performance: the algorithm achieves 1.3-1.45 million meters traveled, but requires 20 seconds to run to completion. We are willing to make this tradeoff due to the needed increase in score.
 
 
@@ -62,7 +64,7 @@ This algorithm does not run on its own and is used in addition to the next algor
 ![Dijkatra's NESW](nesw.png)
 *Dijkstra's is used to send the first 4 cars to the NESW points*
 
-## Greedy Lookahead+Dijkstra+Fandown (OPTIMAL Solution)
+## Greedy Lookahead+Dijkstra+Fandown
 
 This algorithm is a combination of the greedy lookahead, Dijkstra's, and fandown approach. To begin, the first 4 cars are sent in the north, east, south, and west positions using Dijkstra's. It is not necessary to send the cars all the way to the very ends/boundary of the map during this process so we stop the cars ~85% of the way during their respective Dijkstra's paths. 
 
