@@ -53,7 +53,7 @@ Rather than probabilistically sending cars down to a certain location at the sta
 
 Once the 4 junctions have been found that sends them into the north, east, south, and west positions, Dijkstra's algorithm is used to send 4 cars to these positions in the shortest amount of time. 
 
-With the priority queue using julia's data structure package, Dijkstra's algorithm runs in O((E + V) log(V)). However, we are only running Dijkstra's for the frist 4 cars, so it is not such a huge hit on performance.
+With the priority queue using julia's data structure package to improve efficiency, Dijkstra's algorithm runs in O((E + V) log(V)). Additionally, we are only running Dijkstra's for the frist 4 cars, so it is not such a huge hit on performance.
 
 This algorithm does not run on its own and is used in addition to the next algorithm discussed that combines all algorithms together (Greedy Lookahead+Dijkstras+Fandown).
 
