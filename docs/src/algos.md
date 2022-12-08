@@ -12,6 +12,9 @@ The greedy approach is the one of the simplest approaches to implement that yiel
 Inspect all outgoing neighboring junctions. Out of the ones that are unvisited, the car will choose to go the junction where there is a maximum distance between its current junction and the next (while still obeying the time constraints).
 If all outgoing neighbors have been visited, the car will choose a random junction to go to (while still obeying the time constraints). 
 
+Greedy algorithms are designed for speed. Although the solution might not actually be the most optimal, we can be certain that at least the algorithm will be quick. For each car at each junction, the car must only look at its outgoing neighbors to make its next decision so its time complexity for each time step is O(V) where V is the number of vertices or junctions. This is certainly quite fast. 
+
+Additionally, after creating the initial graph, no other data structures are needed for this algorithm so space complexity is O(1), which is certainly ideal.
 
 The algorithm takes 1-2 seconds and achieves approximately 1.1-1.25 million meters traveled under the 54000 second time constraint.
 
@@ -21,7 +24,9 @@ A simple greedy algorithm can be better optimized with the addition of a lookahe
 
 Like before, we want to avoid taking visited streets as much as possible in order to increase coverage so BFS first looks through candidates of outgoing neighboring junctions to take that are unvisited. However, if at a current junction all streets that lead to outgoing neighboring junctions have been visited, then a random candidate is chosen.
 
-This algorithm greatly increases the score, but makes a tradeoff in performance: the algorithm achieves 1.3-1.45 million meters traveled, but requires 20 seconds to run to completion.
+This algorithm will inherently be slower than a simple greedy algorithm and take more space as well. For each car, when it is ready to plan a path for the next 15 timestamps (getting ready to start a lookahead), it must first create a BFS tree from its current junction, which would be O(V) space complexity where n represents vertices or junctions. Traversing the BFS tree is also necessary to find an optimal path based on a distance metric so this would require O(V+E) time complexity to plan out a path for the next 15 steps. Therefore, at the start of every 15 timestamps (beginning of lookahead), each car will have O(V+E) time complexity and O(V) space complexity.
+
+This algorithm greatly increases the score, but makes a tradeoff in performance: the algorithm achieves 1.3-1.45 million meters traveled, but requires 20 seconds to run to completion. We are willing to make this tradeoff due to the needed increase in score.
 
 
 ## Greedy Lookahead+Fandown
@@ -36,6 +41,8 @@ As a result, we still want the cars to take streets that lead them south near th
 
 The remaining algorithm after the fandown process completes follows the protocol of the greedy lookahead approach with no further changes.
 
+The fandown process is quite efficient and does not add extra space. The fandown process runs for a predetermined number of iterations (40 is the default value) and runs for a predetermined number of cars (4 cars if total number of cars is 8). At each time step, each car must look only at its outgoing neighbors, which is a time complexity of O(V). As mentioned, no other additional space is needed.
+
 The greedy+fandown approach increases in score slightly, but decreases time by ~25%: this algorithm yields a score of 1.35-1.47 million meters and runs for 15 seconds.
 
 ## Dijkstras
@@ -43,6 +50,8 @@ The greedy+fandown approach increases in score slightly, but decreases time by ~
 Rather than probabilistically sending cars down to a certain location at the start, another approach would be to determine set locations that we want to send cars to and do so in the most optimal way. In short, we want to increase coverage as much as possible by sending cars to explore all sides and areas as much as possible. Thus, this approach entails first finding 4 junctions : one at the largest latitude, one at the lowest latitude, one at the largest longitude, and one at the lowest longitude. The rationale is to move the cars in these positions so that they start in areas that cover the north, east, south, and west sections. 
 
 Once the 4 junctions have been found that sends them into the north, east, south, and west positions, Dijkstra's algorithm is used to send 4 cars to these positions in the shortest amount of time. 
+
+With our implementation, Dijkstra's algorithm runs in O(V^2). However, we are only running Dijkstra's for the frist 4 cars, so it is not such a huge hit on performance.
 
 This algorithm does not run on its own and is used in addition to the next algorithm discussed that combines all algorithms together (Greedy Lookahead+Dijkstras+Fandown).
 
