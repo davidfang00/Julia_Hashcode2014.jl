@@ -6,7 +6,7 @@ Removed duplicates that are in the form `[...,1,2,1,2,...]` -> `[...,1,2,...]`.
 - `itinerary::Vector{Int64}`: the vector itinerary of a car.
 """
 function remove_dups(itinerary)
-    if length(itinerary) > 6 #make sure there are at least 6 junctions in the itinerary
+    if length(itinerary) > 6 # make sure there are at least 6 junctions in the itinerary
         repeats_removed = Vector{Int64}()
         i = 1
         while i <= length(itinerary)

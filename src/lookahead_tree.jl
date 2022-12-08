@@ -154,7 +154,7 @@ function lookahead_tree_bounded(
                     (lat_min <= j.latitude <= lat_max) &&
                     (long_min <= j.longitude <= long_max)
                 ) == false
-                    discount *= 1 / 10.0 #discount factor if outside of bounds
+                    discount *= 1 / 10.0 # discount factor if outside of bounds
                 end
 
                 dist *= discount
@@ -179,6 +179,7 @@ function lookahead_tree_bounded(
             end
         end
 
+        # add random neighbors if there are no "ideal" candidates
         if isempty(new_junctions)
             num_samples = rand([2, 2, 2, 2])
             for junc in current_junctions
@@ -195,7 +196,7 @@ function lookahead_tree_bounded(
                     path_visited = copy(junc.path_visited)
                     candidate = rand(valid_candidates)
                     traverse_time = edge_time(graph, current_junction, candidate)
-                    dist = 1 / 1000000.0
+                    dist = 1 / 1000000.0 # visited candidates contribute basically 0 distance
 
                     new_node = TreeNode(
                         junc,
@@ -220,6 +221,7 @@ function lookahead_tree_bounded(
     best_itinerary = Vector{Int64}()
     best_dist = best_node.distance_traveled
 
+    # find the best itinerary by backtracking
     while isnothing(best_node) == false
         push!(best_itinerary, best_node.junction)
         best_node = best_node.parent

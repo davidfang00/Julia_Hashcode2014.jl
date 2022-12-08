@@ -41,6 +41,11 @@ nb_vertices(g::AdjacencyGraph) = length(g.outneighbors)
 """
     edge_weight(g, u, v)
 Returns the distance that the path (u, v) will traverse based on an [`AdjacencyGraph`](@ref) g.
+
+# Parameters
+- `g::AdjacencyGraph`: The adjacency graph.
+- `u`: a node u.
+- `v`: a node v.
 """
 function edge_weight(g::AdjacencyGraph, u, v)
     k = searchsortedfirst(sort(g.outneighbors[u]), v)
@@ -50,6 +55,11 @@ end
 """
     edge_time(g, u, v)
 Returns the time it takes to traverse the path (u, v) based on an [`AdjacencyGraph`](@ref) g.
+
+# Parameters
+- `g::AdjacencyGraph`: The adjacency graph.
+- `u`: a node u.
+- `v`: a node v.
 """
 function edge_time(g::AdjacencyGraph, u, v)
     return g.times[(u, v)]
@@ -58,6 +68,10 @@ end
 """
     outneighbors(g, u)
 Returns the outneighbors of node u based on an [`AdjacencyGraph`](@ref) g.
+
+# Parameters
+- `g::AdjacencyGraph`: The adjacency graph.
+- `u`: a node u.
 """
 function outneighbors(g::AdjacencyGraph, u)
     return g.outneighbors[u]
