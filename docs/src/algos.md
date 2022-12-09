@@ -88,6 +88,8 @@ An interesting artifact that results from the greedy lookahead approach is that 
 
 This is the ideal solution that runs in 20 seconds and achieves a score of 1.65-1.8 million. It's no surprise that time is around the same as the previous solutions discussed because time complexity has already been explained in previous sections and no further additions would exceedingly add to this time complexity. Additionally, no other space complexity is added due to the only other significant data structures being added outside of the adjacency matrix were the lookahead trees (BFS trees), which has already been discussed.
 
+We achieved our best score of 1.83 million using this algorithm with n\_lookahead = 21 and seq\_steps = 19.
+
 ## Upper Bound of Solution
 
 The way we went about determining the upper bound of the total distance of any feasible solution is by first sorting the list of edges (roads) by distance/time. After forming an ordered list of the roads that could be traversed from largest $(\frac{\text{distance}}{\text{time}})$ value to the smallest, we thought the best approach to come up with an upper bound would be to simulate sending 1 of the $n$ cars down each road in order, one at a time. To optimize the solution, we looked at each car independently such that time could be taken into account independently for each car (if one car starts down a road, that does not mean the time limit has started for all of the other cars as well). With these restrictions set in place, having cars traversing the same road multiple times and wasting time was no longer a problem (which would be the optimal algorithm). 
