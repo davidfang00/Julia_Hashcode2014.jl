@@ -2,6 +2,12 @@
 CurrentModule = Julia_Hashcode2014
 ```
 
+<script
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"
+  type="text/javascript">
+</script>
+
+
 # Algorithms in Julia_Hashcode2014
 
 Documentation for the algorithms in [Julia_Hashcode2014](https://github.com/davidfang00/Julia_Hashcode2014.jl).
