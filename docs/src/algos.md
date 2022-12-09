@@ -1,13 +1,10 @@
 ```@meta
 CurrentModule = Julia_Hashcode2014
-```
 
-```
 <script
   src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"
   type="text/javascript">
 </script>
-
 ```
 
 
@@ -102,4 +99,4 @@ The way we went about determining the upper bound of the total distance of any f
 
 As such, let us say that we have $n$ cars (each car labeled $n_i$), and $r$ roads (each road labeled $r_i$) each with their own respective distance $d_i$ and time $t_i$. Let us also acknowledge that the time constraint for all the cars is $T$, now we can determine our upper bound given the restrictions/approach above. If each $n_i$ car is independently restricted by $T$, we can iterate through our sorted list of roads and allow car $n_i$ travers the roads in order while keeping track of accumulated time and distance. After car $n_i$ completely traverses a road, we will remove the road from our list so that it isn’t traversed multiple times. There are a couple of edge cases where car $n_i$ is closing in on having an accumulated time near $T$ and the next road's time constraint (in the list order) is greater than $T - \text{(current accumulated time of car )} n_i$. If this is the case, we can loop through all of the remaining roads to find a road that takes $t_i \leq T - \text{(current accumulated time of car )} n_i$, and have $n_i$ traverse that road instead until the $\text{(current accumulated time of car )} n_i = T$ or there is no road with  $t_i <= T - \text{(current accumulated time of car )} n_i$. Since the first iteration with car $n_1$ has the option to pick from any of the $r_i$ roads, we can upper bound its total distance by whatever subset of $r$ roads is closest to $T$ while traversing the list in order from largest $(d_i/t_i)$, which we can say is some subset of the roads called $M$. Since $n_1$ has the most diverse number of options of roads and times to choose from, we know that $M$ must be close to the optimal subset that is closest to $T$, thus making it an upper bound. 
 
-As such, the overall upper bound of our approach to determine the total distance of any feasible solution is $M * \text{(the number of cars available)} \rightarrow M$ in this case is the subset accounted for at the end of each $n_i$’s complete iteration through the list of ordered roads. 
+As such, the overall upper bound of our approach to determine the total distance of any feasible solution is $M * \text{(the number of cars available)} \rightarrow M$ in this case is the total distance of the subset of all the roads accounted for at the end of each $n_i$’s complete iteration through the list of ordered roads. For instance, if $n_i$ was able to traverse a total of $10$ roads and the sum of the distance of those roads is $100$, then for $n=8$ cars we have an upper bound of $100*8 = 800$ for total distance of any feasible solution.
