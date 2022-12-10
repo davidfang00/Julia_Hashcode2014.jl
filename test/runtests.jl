@@ -53,7 +53,9 @@ DocMeta.setdocmeta!(
     @testset verbose = true "Test Greedy fandown" begin
         city = read_city()
         solution = fandown_greedy(city)
+        dist = total_distance(solution, city)
         @test is_feasible(solution, city)
+        @test dist > 0
     end
 
     @testset verbose = true "Test Dijkstra" begin
@@ -102,6 +104,8 @@ DocMeta.setdocmeta!(
     @testset verbose = true "Test Greedy Lookahead Dijkstras Fandown" begin
         city = read_city()
         solution = greedy_lookahead_dijkstras_fandown(city)
+        dist = total_distance(solution, city)
         @test is_feasible(solution, city)
+        @test dist > 0
     end
 end
